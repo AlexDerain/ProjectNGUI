@@ -17,6 +17,7 @@
     $fp = fopen($_SERVER['DOCUMENT_ROOT'] . "/myText.txt","wb");
     fwrite($fp,$content);
     fclose($fp);
+    echo "this is in " . __DIR__;
     ?>
 
   
