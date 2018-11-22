@@ -2,32 +2,50 @@
 <html>
 <body>
 <div style="text-align:center">
-<script>
-    var email = window.location.search.split('?')[1].split('=')[1].split('&')[0].split('%')[0];
-    var beers;
-    if (!window.location.search.split('=')[2]){
-        beers = 5;
+
+<form action = "Profile.php">
+    <input type="submit" value="Profile Settings"/>
+</form>
+
+<?php 
+    $fp = fopen('Lisa.txt', 'r');
+    $email = fgets($fp);
+    fclose($fp);
+    $emails = explode("@", $email);
+    echo "Welcome " . $emails[0] . "!<br><br>"; 
+
+    $beers = 0;
+    if(isset($_GET["beer"])){
+        $beers = $_GET["beer"];
     }
     else{
-        beers = window.location.search.split('=')[2];
+        $beers = 6;
     }
 
-    document.write("Welcome " + email + "!");
-    document.write("<br><br>");
-
-    if(beers > 0){    
-        document.write("Credit left: " + beers);
-        beers -= 1;
+    echo "You have " . $beers . " credits left.<br>";
+    if($beers == 0){
+        echo "Sorry, but you have no credit left.<br>";
     }
     else{
-        document.write("Credit left: 0");
-        document.write("<br>");
-        document.write("Sorry, please buy credit before getting more beers.");
+        echo '<br>';
+        $beers --;
     }
-</script>
+
+    function refresh(){
+    }
+
+    if(array_key_exists('refresh', $_GET)){
+        refresh();
+    }
+?>
+
+<form method = "get">
+    <input type = "hidden" name = "email_address" value = <?php echo $emails[0];?>>
+    <input type = "hidden" name = "beer" value = <?php echo $beers ?>>
+    <input type = "submit" name = "refresh" id = "refresh" value = "Refresh" /><br>
+</form>
+
 </div>
-
-<center><button onclick="window.location.href='Login.html?email_address=' + email + '&beer_credit=' + beers">Refresh State</button></center>
 
 </body>
 </html>

@@ -2,20 +2,21 @@
 <html>
 <body>
 <div style="text-align:center">
-    <script>
-        var email = window.location.search.split('?')[1].split('&')[0].split('=')[1].split('%')[0];
-        document.write("Greetings, " + email + ", your registration is about to finish.");
-    </script>
+
+<?php
+    $fp = fopen('Lisa.txt', 'r');
+    $email = fgets($fp);
+    fclose($fp);
+    $emails = explode('@', $email);
+
+    echo "Congratulations " . $emails[0] . ", your registration is finished!<br><br>";
+    echo "Enjoy your trip in BeerMe!<br><br>"
+?>
+
 </div>
-<form action="Login.html" method="GET" style="text-align:center">
-<p>The certification code has been sent to your email address, <br />
-please confirm your email address by entering it below.</p>
-
-Certification code:<br />
-<input type="text" name="certification_code"><br /><br />
+<form action="Login.php" method="post" style="text-align:center">
+    <input type = "submit" name = 'login' value = "Login Now">
 </form>
-
-<center><button onclick="window.location.href='Login.html?email_address=' + email">Done</button></center>
 
 </body>
 </html>
