@@ -29,6 +29,7 @@
       }
       else{
         $emailErr = 'Please register first';
+        $flag3 = false;
         goto BreakingLabel;
       }
 
