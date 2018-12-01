@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  background-color: #ffdd99;
+}
+</style>
+</head>
 <body>
-<div style="text-align:center">
 
+<div class = "smartphone" style="text-align:center">
+<img src="logo.png" class = "center">
 <form action = "Profile.php">
     <input type="submit" value="Profile Settings"/>
 </form>

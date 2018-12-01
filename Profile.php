@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html>
-<body>
-<div style = "text-align:center">
+<head>
+<style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  background-color: #ffdd99;
+}
+</style>
+</head>
 
+<body>
+<div class = "smartphone" style = "text-align:center">
+<img src="logo.png" class = "center">
 <?php
     function test_input($data){
         $data = trim($data);

@@ -3,10 +3,28 @@
 <head>
 <style>
 .error {color: #FF0000;}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  background-color: #ffdd99;
+}
 </style>
 </head>
 <body>
-
+<div class = "smartphone">
+<img src="logo.png" class = "center">
 <?php
     function test_input($data){
         $data = trim($data);
@@ -76,6 +94,6 @@ Confirm password:<br />
 <span class="error">* <br><?php echo $secondpasswordErr;?></span><br /><br>
 <input type="submit" name = 'submit' value="Register">
 </form>
-
+</div>
 </body>
 </html>

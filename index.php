@@ -2,10 +2,29 @@
 <html>
 <head>
 <style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 .error {color: #FF0000;}
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  background-color: #ffdd99;
+}
 </style>
 </head>
 <body>
+<div class = "smartphone">
+<img src="logo.png" class = "center">
 
 <?php
     function test_input($data){
@@ -85,5 +104,6 @@
   
   <center><a href="Register_1.php" table="_blank">No account? Register now.</a></center>
 
+</div>
 </body>
 </html>
