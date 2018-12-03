@@ -27,7 +27,9 @@
 <img src="logo.png" class = "center">
 
 <?php
-    $fp = fopen('Lisa.txt', 'r');
+    $username = explode("=", $_SERVER['REQUEST_URI'])[1];
+    $user = $username . ".txt";
+    $fp = fopen($user, 'r');
     $email = fgets($fp);
     fclose($fp);
     $emails = explode('@', $email);
@@ -36,7 +38,7 @@
     echo "Enjoy your trip in BeerMe!<br><br>"
 ?>
 
-<form action="Login.php" method="post" style="text-align:center">
+<form action= <?php echo "Login.php?username=" . $username ?> method="post" style="text-align:center">
     <input type = "submit" name = 'login' value = "Login Now">
 </form>
 </div>

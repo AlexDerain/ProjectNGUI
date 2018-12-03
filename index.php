@@ -37,23 +37,26 @@
     $emailErr = $passwordErr = "";
     $email = $password = "";
     $email_check = $password_check = "";
+    $email_exist = "";
     $user = array();
     $flag1 = $flag2 = $flag3 = true;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      if(is_readable('Lisa.txt')){
-        $user = file('Lisa.txt');
+      $email_exist = test_input($_POST["email_address"]) . ".txt";
+      if(is_readable($email_exist)){
+        $user = file($email_exist);
         $email_check = trim($user[0]);
         $password_check = trim($user[1]);
       }
       else{
         $emailErr = 'Please register first';
         $flag3 = false;
-        goto BreakingLabel;
+        goto Breaking_Label;
+        # I will not use this shit if I have any choices
       }
 
       if (empty($_POST["password"])){
-        $passwordErr = "Please enter your passoword";
+        $passwordErr = "Please enter your password";
         $flag1 = false;
       }
       else{
@@ -82,7 +85,7 @@
         }
       }
 
-      BreakingLabel:
+      Breaking_Label:
       if($flag1 && $flag2 && $flag3){
         header('Location: Login.php?email_address=' . $email);
       }

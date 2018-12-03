@@ -70,13 +70,14 @@
         }
 
         if($flag1 && $flag2 && $flag3){
+            $username = $email . ".txt";
             $em = $email . PHP_EOL;
             $pw = $password . PHP_EOL;
-            $fp = fopen('Lisa.txt', 'wb');
+            $fp = fopen($username, 'wb');
             fwrite($fp, $em);
             fwrite($fp, $pw);
             fclose($fp);
-            header('Location: Register_2.php');
+            header('Location: Register_2.php?username=' . $email);
         }
     }
 ?>

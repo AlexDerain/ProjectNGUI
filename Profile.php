@@ -33,8 +33,10 @@
         return $data;
     }
 
+    $username = urldecode(explode("=", $_SERVER['REQUEST_URI'])[1]);
+    $user = explode(".txt", $username)[0];
     $height = $weight = $gender = $male_status = $female_status = "";
-    $profile = file('Lisa.txt');
+    $profile = file($username);
     if(count($profile) > 3){
         $height = trim($profile[3]);
         $weight = trim($profile[4]);
@@ -49,9 +51,9 @@
         }
     }
 
-    function saving($new_height, $new_weight, $new_gender){
-        $profile = file('Lisa.txt');
-        $fp = fopen('Lisa.txt', 'w+');
+    function saving($new_height, $new_weight, $new_gender, $user_file, $user_name){
+        $profile = file($user_file);
+        $fp = fopen($user_file, 'w+');
         fwrite($fp, trim($profile[0]) . PHP_EOL);
         fwrite($fp, trim($profile[1]) . PHP_EOL);
         fwrite($fp, trim($profile[2]) . PHP_EOL);
@@ -59,18 +61,21 @@
         fwrite($fp, $new_weight . PHP_EOL);
         fwrite($fp, $new_gender . PHP_EOL);
         fclose($fp);
-        header('Location: Login.php');
+        header('Location: Login.php?username=' . $user_name);
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $height = test_input($_POST["height"]);
         $weight = test_input($_POST["weight"]);
         $gender = test_input($_POST["gender"]);
-        saving($height, $weight, $gender);
+        saving($height, $weight, $gender, $username, $user);
     }
 ?>
 
-<form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<!-- remove height
+add whether to see pictures -->
+
+<form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?username=" . $username ?>">
     Height:
     <input type = "text" name = "height" value = <?php echo $height;?>><br><br>
     Weight:
